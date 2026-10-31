@@ -1,0 +1,20 @@
+{
+  "name": "been-there",
+  "private": true,
+  "type": "module",
+  "description": "Mark the states and countries you’ve been to, and see what you’re missing.",
+  "scripts": {
+    "test": "node --test test/unit.test.mjs && node test/e2e.mjs",
+    "geo": "node tools/build-geo.mjs",
+    "build": "node tools/build.mjs"
+  },
+  "devDependencies": {
+    "d3-geo": "^3.1.1",
+    "esbuild": "^0.24.2",
+    "i18n-iso-countries": "^7.14.0",
+    "topojson-client": "^3.1.0",
+    "topojson-simplify": "^3.0.3",
+    "us-atlas": "^3.0.1",
+    "world-atlas": "^2.0.2"
+  }
+}

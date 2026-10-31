@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Been There</title>
+  <meta name="description" content="Mark the states and countries you’ve lived in, visited or want to see. Each one shows what you’re missing there, a rough long weekend, and an animal to watch for, and it guesses how you talk from where you’ve lived.">
+  <meta property="og:title" content="Been There">
+  <meta property="og:description" content="Mark where you’ve been and see what you’re missing.">
+  <meta property="og:image" content="https://junkdrawer.works/been-there/og.png">
+  <meta property="og:url" content="https://junkdrawer.works/been-there/">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#f3eee2" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#191b1d" media="(prefers-color-scheme: dark)">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="icon-180.png">
+  <link rel="preload" href="fonts/fraunces.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/public-sans.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+  <noscript><p class="noscript">Been There needs JavaScript to draw the maps.</p></noscript>
+
+  <header class="top">
+    <div class="brand">
+      <svg class="pin" viewBox="0 0 24 32" aria-hidden="true"><path d="M12 1C6 1 1.5 5.5 1.5 11.4 1.5 19 12 31 12 31s10.5-12 10.5-19.6C22.5 5.5 18 1 12 1z"/><circle cx="12" cy="11.2" r="4"/></svg>
+      <h1>Been There</h1>
+    </div>
+    <button class="ghost share-btn" id="share-open" type="button">Share</button>
+    <nav class="tabs" role="tablist" aria-label="Maps">
+      <button role="tab" id="tab-us" aria-controls="v-us" aria-selected="true">States</button>
+      <button role="tab" id="tab-world" aria-controls="v-world" aria-selected="false">World</button>
+      <button role="tab" id="tab-words" aria-controls="v-words" aria-selected="false">How you talk</button>
+    </nav>
+  </header>
+
+  <div class="banner" id="banner" hidden></div>
+
+  <main>
+    <section class="view" id="v-us" role="tabpanel" aria-labelledby="tab-us">
+      <div class="summary" id="us-summary"></div>
+      <div class="mapwrap" id="us-map">
+        <div class="zoomer" aria-label="Zoom">
+          <button type="button" data-zoom="in" aria-label="Zoom in">+</button>
+          <button type="button" data-zoom="out" aria-label="Zoom out">−</button>
+          <button type="button" data-zoom="reset" aria-label="Show the whole map" hidden>⤢</button>
+        </div>
+      </div>
+      <div class="smalls" id="us-smalls" role="group" aria-label="Small states"></div>
+      <div class="legend" id="us-legend" role="toolbar" aria-label="Mark states as"></div>
+      <p class="hint" id="us-hint"></p>
+      <div class="blocks" id="us-blocks"></div>
+      <details class="all" id="us-all">
+        <summary>Every state, as a list</summary>
+        <ul class="rows" id="us-rows"></ul>
+      </details>
+    </section>
+
+    <section class="view" id="v-world" role="tabpanel" aria-labelledby="tab-world" hidden>
+      <div class="summary" id="world-summary"></div>
+      <div class="mapwrap world" id="world-map">
+        <div class="zoomer" aria-label="Zoom">
+          <button type="button" data-zoom="in" aria-label="Zoom in">+</button>
+          <button type="button" data-zoom="out" aria-label="Zoom out">−</button>
+          <button type="button" data-zoom="reset" aria-label="Show the whole map" hidden>⤢</button>
+        </div>
+      </div>
+      <div class="legend" id="world-legend" role="toolbar" aria-label="Mark countries as"></div>
+      <p class="hint" id="world-hint"></p>
+      <div class="find">
+        <label for="find">Find a country</label>
+        <input id="find" type="search" placeholder="Portugal, Peru, Palau…" autocomplete="off" spellcheck="false">
+        <ul class="rows" id="find-rows"></ul>
+      </div>
+      <div class="blocks" id="world-blocks"></div>
+      <div class="continents" id="continents"></div>
+    </section>
+
+    <section class="view" id="v-words" role="tabpanel" aria-labelledby="tab-words" hidden>
+      <div class="words-head">
+        <h2>How you talk</h2>
+        <p>From where you grew up and where you’ve lived, here’s how you probably say things. Tell it when it’s wrong; once you’ve answered a few, it works out where you sound like you’re from.</p>
+        <label class="grew">Where did you grow up?
+          <select id="grew-up"></select>
+        </label>
+        <p class="lived-line" id="lived-line"></p>
+      </div>
+      <p class="score" id="word-score" aria-live="polite"></p>
+      <ol class="words" id="words"></ol>
+      <section class="block sounds" id="sounds" hidden></section>
+    </section>
+  </main>
+
+  <aside class="sheet" id="sheet" hidden aria-modal="false" role="dialog" aria-labelledby="card-name">
+    <div class="sheet-in" id="card"></div>
+  </aside>
+
+  <div class="modal" id="share" hidden role="dialog" aria-modal="true" aria-labelledby="share-h">
+    <div class="modal-in">
+      <h2 id="share-h">Share your map</h2>
+      <p>A link to your map, states and countries. It also works as a backup: open it on another phone and choose “Use this map”.</p>
+      <label>Your name, so they know whose map it is (optional)
+        <input id="share-name" type="text" maxlength="40" autocomplete="given-name">
+      </label>
+      <div class="share-row">
+        <input id="share-link" type="text" readonly aria-label="Link to your map">
+        <button id="share-copy" type="button">Copy</button>
+      </div>
+      <p class="share-note" id="share-note" aria-live="polite"></p>
+      <div class="share-row actions">
+        <button id="share-pic" type="button" class="ghost">Save a picture of it</button>
+        <button id="share-close" type="button" class="ghost">Done</button>
+      </div>
+    </div>
+  </div>
+
+  <footer class="jd-foot">
+    <a href="https://junkdrawer.works/">Part of junkdrawer.works</a>
+    <span aria-hidden="true">·</span>
+    <a href="https://junkdrawer.works/privacy.html">Privacy</a>
+  </footer>
+
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
