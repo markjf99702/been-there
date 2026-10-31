@@ -1,6 +1,6 @@
 # Been There
 
-**Use it: [junkdrawer.works/been-there](https://junkdrawer.works/been-there/)**
+**Use it: [been-there.junkdrawer.works](https://been-there.junkdrawer.works/)**
 
 **A map of the states and countries you’ve been to, and what you’re missing in the rest.** Tap a state to mark it Lived, Visited, Passed through or Want to go, and its card opens: three things not to miss, a rough long weekend, an animal or plant to keep an eye out for, what to eat and one odd fact. A third page guesses how you talk (soda, pop or coke; bubbler; hoagie, hero or grinder) from where you grew up and where you’ve lived.
 

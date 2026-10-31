@@ -8,7 +8,7 @@ import { MapView, el } from './map.js';
 import * as L from './logic.js';
 import { savePicture } from './picture.js';
 
-const ADDRESS = 'https://junkdrawer.works/been-there/';
+const ADDRESS = 'https://been-there.junkdrawer.works/';
 const KEY = 'been-there.v1';
 const $ = id => document.getElementById(id);
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);

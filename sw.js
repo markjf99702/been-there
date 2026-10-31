@@ -8,7 +8,7 @@
 // fingerprint of every file in SHELL: change any of them and test/e2e.mjs fails until FILES is changed to match (it
 // says what to), which changes this file, so every copy is made whole again at once.
 const CACHE = 'been-there-v1'; // bump the number when the file list changes
-const FILES = '349292b0'; // test/e2e.mjs checks this
+const FILES = '44ea8960'; // test/e2e.mjs checks this
 const SHELL = [
   './', 'index.html', 'icon.svg', 'manifest.webmanifest', 'icon-192.png', 'css/app.css',
   'js/app.js', 'js/map.js', 'js/logic.js', 'js/picture.js',

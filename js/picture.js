@@ -95,7 +95,7 @@ export async function picture(kind, data) {
     x += 36 + g.measureText(label).width + 34;
   }
   g.fillStyle = col.ink2; g.font = '400 26px "Public Sans", system-ui, sans-serif';
-  g.fillText('junkdrawer.works/been-there', 66, H - 40);
+  g.fillText('been-there.junkdrawer.works', 66, H - 40);
   return c;
 }
 
